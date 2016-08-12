@@ -1,0 +1,780 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #d0d0d0;
+}
+.highlight .p, .highlight .pi {
+  color: #d0d0d0;
+}
+.highlight .gi {
+  color: #90a959;
+}
+.highlight .gd {
+  color: #ac4142;
+}
+.highlight .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #aa759f;
+}
+.highlight .kc {
+  color: #d28445;
+}
+.highlight .kt {
+  color: #d28445;
+}
+.highlight .kd {
+  color: #d28445;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
+}
+.highlight .sr {
+  color: #75b5aa;
+}
+.highlight .si {
+  color: #8f5536;
+}
+.highlight .se {
+  color: #8f5536;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #6a9fb5;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
+}
+.highlight .ss {
+  color: #90a959;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,400italic,600italic,700italic" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <div class="space-buffer"></div>
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='http://github.com/joeellis/karma-tracker'>Github Repo</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<h2 id="what-is-karma-and-why-would-i-want-to-track-it">What is Karma and why would I want to track it?</h2>
+
+<p>Sometimes at your workplace or organization, you want to show your appreciation to your coworker or teammate, perhaps for some outstanding work they&rsquo;ve done, or for a funny comment they made.  </p>
+
+<p>You can do this by giving them some <strong>karma</strong> (sometimes called &ldquo;kudos&rdquo;, &ldquo;good feeling&rdquo;, &ldquo;snaps&rdquo;, or &ldquo;thanks&rdquo;), which we keep track in terms of a simple point system.  Then, your coworker can feel rad because they got a little reward, and you can feel rad for making your coworker rad.  So, in the end, everyone gets to be rad.</p>
+
+<p>This Karma Tracker API is a simple RESTful-interface for creating, giving, and tracking karma.  This API works best in tandem with chatbots or automated hooks for Slack, HipChat, Github, etc. so karma can easily be created within your company&rsquo;s everyday chat software and workflow.</p>
+
+<h2 id="install">Install</h2>
+
+<p>Read the instructions on how to install your own Karma Tracker application on the <a href="https://github.com/joeellis/karma-tracker">github repo</a> - it should get you setup in running the development server as well as the docs server.</p>
+
+<h2 id="coming-soon">Coming soon!</h2>
+
+<ul>
+<li>User authentication and authorization</li>
+<li>Slack app integration</li>
+<li>Ability to write custom extensions to provide custom logic for calculating and sending karma</li>
+</ul>
+
+<h1 id="users">Users</h1>
+
+<h2 id="the-user-object">The user object</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joe@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe Ellis"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The user object is an object with a data property that contains the following properties of a given user record:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>ID of the user record.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Email of the user.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Full name of user.</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Unix timestamp when record was last updated.</td>
+</tr>
+<tr>
+<td>inserted_at</td>
+<td>Unix timestamp when record was created.</td>
+</tr>
+</tbody></table>
+
+<h2 id="list-all-users">List all users</h2>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/v1/users"</span>
+</code></pre>
+
+<blockquote>
+<p>Returned JSON:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joe@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe Ellis"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of all users on the system.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://example.com/v1/users</code></p>
+
+<h3 id="returns">Returns</h3>
+
+<p>An object with a data property that contains an array of all user objects in the system, ordered by ID. Each entry in the array is a separate user object.</p>
+
+<h2 id="retrieve-a-user">Retrieve a user</h2>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/v1/users/1"</span>
+</code></pre>
+
+<blockquote>
+<p>Returned JSON:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joe@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe Ellis"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a specific user.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://example.com/v1/users/&lt;user_id&gt;</code></p>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns a user object if a valid identifier was provided.</p>
+
+<h2 id="create-a-user">Create a user</h2>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -v -X POST http://example.com/v1/users <span class="se">\</span>
+     -H <span class="s2">"Content-Type:application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{
+           "user": {
+             "email": "foo@example.com",
+             "name": "Foo Bar"
+           }
+         }'</span>
+</code></pre>
+
+<blockquote>
+<p>Returned JSON:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Foo Bar"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Creates a new user object.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://example.com/v1/users</code></p>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns the created user object if the call succeeded.</p>
+
+<h3 id="arguments">Arguments</h3>
+
+<p>User parameters must be all wrapped in a <code class="prettyprint">user</code> namespace before submitting.  Acceptable parameters are as follows:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email (required)</td>
+<td>Email of the user.</td>
+</tr>
+<tr>
+<td>name (required)</td>
+<td>Full name of the user.</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-user">Update a user</h2>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -v -X PUT http://example.com/v1/users/1 <span class="se">\</span>
+     -H <span class="s2">"Content-Type:application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{
+           "user": {
+             "email": "bar@example.com",
+             "name": "Bar Foo"
+           }
+         }'</span>
+</code></pre>
+
+<blockquote>
+<p>Returned JSON:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bar@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bar Foo"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Updates an existing user object.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT http://example.com/v1/users/&lt;user_id&gt;</code></p>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns the updated user object if the call succeeded.</p>
+
+<h3 id="arguments">Arguments</h3>
+
+<p>User parameters must be all wrapped in a <code class="prettyprint">user</code> namespace before submitting.  Acceptable parameters are as follows:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>New email of the user.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>New full name of the user.</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-a-user">Delete a user</h2>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -v -X DELETE http://example.com/v1/users/1 <span class="se">\</span>
+     -H <span class="s2">"Content-Type:application/json"</span>
+</code></pre>
+
+<blockquote>
+<p>Returned JSON:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bar@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bar Foo"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Deletes an existing user object.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE http://example.com/v1/users/&lt;user_id&gt;</code></p>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns the deleted user object if the call succeeded.</p>
+
+<h1 id="karma">Karma</h1>
+
+<h2 id="the-karma-object">The karma object</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Helped me figure out some code!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"points"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"giver_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"receiver_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The karma object is an object with a data property that contains the following properties of a given karma record:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>ID of the karma record.</td>
+</tr>
+<tr>
+<td>giver_id</td>
+<td>ID of the user that gave the karma.</td>
+</tr>
+<tr>
+<td>receiver_id</td>
+<td>ID of the user that received the karma.</td>
+</tr>
+<tr>
+<td>reason</td>
+<td>Reason / explanation of why the karma was given.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>The type of karma (can be anything, e.g. points, unicorns, etc). Defaults to &ldquo;points&rdquo;.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>The number of karma given.</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Unix timestamp when record was last updated.</td>
+</tr>
+<tr>
+<td>inserted_at</td>
+<td>Unix timestamp when record was created.</td>
+</tr>
+</tbody></table>
+
+<h2 id="list-all-karma">List all karma</h2>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/v1/karma"</span>
+</code></pre>
+
+<blockquote>
+<p>Returned JSON:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"giver_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"receiver_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Helped me figure out some code!"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of all karma objects in the system.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://example.com/v1/karma[?filter=value]</code></p>
+
+<h3 id="arguments">Arguments</h3>
+
+<p>This endpoint supports a number of filters that can be applied to the end of the query:</p>
+
+<h3 id="returns">Returns</h3>
+
+<p>An object with a data property that contains an array of all karma objects in the system, ordered by ID. Each entry in the array is a separate karma object.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>since</td>
+<td>unix timestamp</td>
+<td>Retrieve all karma created since <timestamp>.</td>
+</tr>
+<tr>
+<td>given_by</td>
+<td>user ID</td>
+<td>Retrieve all karma that has been given by a certain user ID.</td>
+</tr>
+<tr>
+<td>given_to</td>
+<td>user ID</td>
+<td>Retrieve all karma given to a certain user ID.</td>
+</tr>
+</tbody></table>
+
+<h2 id="retrieve-a-karma-object">Retrieve a karma object</h2>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/v1/karma/1"</span>
+</code></pre>
+
+<blockquote>
+<p>Returned JSON:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Helped me figure out some code!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"points"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"giver_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"receiver_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a specific karma object.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://example.com/v1/karma/&lt;karma_id&gt;</code></p>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns a karma object if a valid identifier was provided.</p>
+
+<h2 id="create-karma">Create karma</h2>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -v -X POST http://example.com/v1/karma <span class="se">\</span>
+     -H <span class="s2">"Content-Type:application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{
+           "karma": {
+             "giver_id": 1,
+             "receiver_id": 2,
+             "reason": "Because user is awesome!"
+           }
+         }'</span>
+</code></pre>
+
+<blockquote>
+<p>Returned JSON:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Because user is awesome!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"points"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"giver_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"receiver_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Creates a new karma object.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://example.com/v1/karma</code></p>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns the created karma object if the call succeeded.</p>
+
+<h3 id="arguments">Arguments</h3>
+
+<p>Karma parameters must be all wrapped in a <code class="prettyprint">karma</code> namespace before submitting.  Acceptable parameters are as follows:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>giver_id (required)</td>
+<td>User ID of user that is giving the karma.</td>
+</tr>
+<tr>
+<td>receiver_id (required)</td>
+<td>User ID of user that is receiving the karma.</td>
+</tr>
+<tr>
+<td>reason</td>
+<td>Reason karma was given.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>The number of karma you want to give. Defaults to 1.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>The type of karma you want to give (e.g. points, unicorns, anything you want). Defaults to &ldquo;points&rdquo;.</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-karma">Update karma</h2>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -v -X PUT http://example.com/v1/karma <span class="se">\</span>
+     -H <span class="s2">"Content-Type:application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{
+           "karma": {
+             "giver_id": 2,
+             "receiver_id": 3,
+             "reason": "Changing the reason.",
+             "type": "kitty kats",
+             "amount": 400
+           }
+         }'</span>
+</code></pre>
+
+<blockquote>
+<p>Returned JSON:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Changing the reason."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kitty kats"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"giver_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"receiver_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Updates an existing karma object.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT http://example.com/v1/karma/&lt;karma_id&gt;</code></p>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns the updated karma object if the call succeeded.</p>
+
+<h3 id="arguments">Arguments</h3>
+
+<p>Karma parameters must be all wrapped in a <code class="prettyprint">karma</code> namespace before submitting.  Acceptable parameters are as follows:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>giver_id</td>
+<td>User ID of user that is giving the karma.</td>
+</tr>
+<tr>
+<td>receiver_id</td>
+<td>User ID of user that is receiving the karma.</td>
+</tr>
+<tr>
+<td>reason</td>
+<td>Reason karma was given.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>The number of karma you want to give. Defaults to 1.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>The type of karma you want to give. Defaults to &ldquo;points&rdquo;.</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-karma">Delete karma</h2>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -v -X DELETE http://example.com/v1/karma/1 <span class="se">\</span>
+     -H <span class="s2">"Content-Type:application/json"</span>
+</code></pre>
+
+<blockquote>
+<p>Returned JSON:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Because user is awesome."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"points"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"giver_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"receiver_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1466737045</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Deletes an existing karma object.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE http://example.com/v1/karma/&lt;karma_id&gt;</code></p>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns the deleted karma object if the call succeeded.</p>
+
+          <h1 id="errors">Errors</h1>
+
+<p>The Karma Tracker API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request &ndash; Your request was errant. Read the error message for details and try again.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; The specified record could not be found.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
